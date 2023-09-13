@@ -1,4 +1,4 @@
-prompt = 'Type add or show or edit or exit: '
+prompt = 'Type add or show or edit, complete or exit: '
 todos = []
 
 while True:
@@ -22,6 +22,15 @@ while True:
 			newTodo = input(f'Former to Do is {todos[number]}, write the edition for this to Do: ')
 			todos[number] = newTodo
 			print('-' * 40 )
+		case 'complete':
+			number = 0
+			for item in todos:
+				number += 1
+				print(f'- {number}: {item}')
+				number = number
+			number = int(input('choose whitch todo is completed: '))
+			number = number -1
+			todos[number] = f'{todos[number]} (DONE)'
 		case 'exit':
 			print("bye")
 			break
