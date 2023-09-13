@@ -8,14 +8,20 @@ while True:
 		case 'add' :
 			todo = input("Enter a toDo: ")
 			todos.append(todo.title())
+			print('-' * 40 )
 		case 'show':
+			number = 0
 			for item in todos:
-				print(item)
+				number += 1
+				print(f'- {number}: {item}')
+				number = number
+				print('-' * 40 )
 		case 'edit':
 			number = int(input('Number of the to Do to edit: '))
 			number  = number - 1
 			newTodo = input(f'Former to Do is {todos[number]}, write the edition for this to Do: ')
 			todos[number] = newTodo
+			print('-' * 40 )
 		case 'exit':
 			print("bye")
 			break
