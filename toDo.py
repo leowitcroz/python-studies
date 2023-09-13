@@ -1,4 +1,4 @@
-prompt = 'Type add or show or exit: '
+prompt = 'Type add or show or edit or exit: '
 todos = []
 
 while True:
@@ -11,9 +11,17 @@ while True:
 		case 'show':
 			for item in todos:
 				print(item)
+		case 'edit':
+			number = int(input('Number of the to Do to edit: '))
+			number  = number - 1
+			newTodo = input(f'Former to Do is {todos[number]}, write the edition for this to Do: ')
+			todos[number] = newTodo
 		case 'exit':
 			print("bye")
 			break
+		case whatever:
+			print('Hey, you printed a unknown command')
+
 
 	
 		
