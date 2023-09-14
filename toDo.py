@@ -55,7 +55,14 @@ while True:
 			number = number -1
 			todos[number] = f'{todos[number].rstrip()} (DONE)' + '\n'
 			writeTodo(todos)
-		
+
+		case 'delete':
+			todos = showAllTodos()
+			number = int(input('choose whitch todo to delete: '))
+			number = number -1
+			del todos[number]
+			writeTodo(todos)
+			
 		case 'exit':
 			print("bye")
 			break
