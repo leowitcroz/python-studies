@@ -20,15 +20,16 @@ while True:
             todos.append(str(new_todo).title())
             functions.writeTodo(todos)
             
+            window['todo'].update(value='')
             window['todos'].update(values=todos) #used to refresh the list
            
         case 'Edit':
             edit_todo = values['todos'][0]
-            new_todo = values['todo'] + '\n'
+            new_todo = values['todo'] 
             
             todos = functions.getTodo()
             index = todos.index(edit_todo)
-            todos[index] = str(new_todo).title()
+            todos[index] = str(new_todo).title() + '\n'
             functions.writeTodo(todos)
             
             window['todos'].update(values=todos) #used to refresh the list
