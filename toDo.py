@@ -1,67 +1,39 @@
-def showAllTodos():
-	number = 0
-	file = open('todos.txt', 'r')
-	todos = file.readlines()
-	for item in todos:
-		number += 1
-		print(f'- {number}: {item}')
-		number = number
-		print('-' * 40 )
-	return todos
 
-def writeTodo(todos):
-	file = open('todos.txt', 'w') 
-	file.writelines(todos)
-
-def addTodo():
-	todo = input("Enter a toDo: ") + '\n'
-	file = open('todos.txt', 'r')
-	todos = file.readlines()
-	todos.append(todo.title())
-	writeTodo(todos)
-
-def editTodo():
-	file = open('todos.txt', 'r')
-	todos = file.readlines()
-	
-	print('Here are your current ToDos:' + '\n')
-
-	showAllTodos()
-
-	number = int(input('Number of the to Do to edit: '))
-	number  = number - 1
-
-	newTodo = input(f'Former to Do is {todos[number].rstrip()}, write the edition for this to Do: ') + '\n'
-	todos[number] = newTodo.title()
-
-	writeTodo(todos)
-	print('-' * 40 )
+import modules.functions as functions
+import time
 
 prompt = 'Type add or show or edit, complete or exit: '
+
+print( 'Now it is: ' + time.strftime('%b %d, %Y %H:%M:%S'))
+
 while True:
 	user_action = input(prompt)
 	print('-' * 40 )
 	user_action = user_action.strip()
 	match user_action:
-		case 'add' :
-			addTodo()
+
+		case 'add' : 
+			functions.addTodo()
+
 		case 'show':
-			showAllTodos()
+			functions.showAllTodos()
+			
 		case 'edit':
-			editTodo()
+			functions.editTodo()
+
 		case 'complete':
-			todos = showAllTodos()
+			todos = functions.showAllTodos()
 			number = int(input('choose whitch todo is completed: '))
 			number = number -1
 			todos[number] = f'{todos[number].rstrip()} (DONE)' + '\n'
-			writeTodo(todos)
+			functions.writeTodo(todos)
 
 		case 'delete':
-			todos = showAllTodos()
+			todos = functions.showAllTodos()
 			number = int(input('choose whitch todo to delete: '))
 			number = number -1
 			del todos[number]
-			writeTodo(todos)
+			functions.writeTodo(todos)
 			
 		case 'exit':
 			print("bye")
