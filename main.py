@@ -3,19 +3,34 @@ import pandas as pd
 
 app = Flask(__name__)
 
-df = pd.read_csv('dictionary.csv')
+wines = pd.read_csv('wines.csv')
+wines = wines[['country','description','name','points','price']]
 
 @app.route('/')
 
 def home():
-    return render_template('home.html')
+    return render_template('home.html', data = wines.to_html())
 
-@app.route('/api/v1/<word>')
+@app.route('/api/v1/best')
 
-def api(word):
-    definition = df.loc[df['word'] == word]['definition'].squeeze()
-    result_dictionary = {'word':word, 'definition':definition}
-    return result_dictionary
+def bestPoint():
+    result = wines[wines['points'] == 100 ].to_dict(orient='records')
+    return result
+
+@app.route('/api/v1/expensive')
+
+def expensive():
+    result = wines[wines['price'] == wines['price'].max()]['name'].squeeze()
+    return result
+
+
+@app.route('/api/v1/lowprice')
+
+def lowPrice():
+    result = wines[wines['price'] < 100].to_dict(orient='records')
+    return result
+
+
 
     
 
