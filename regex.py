@@ -11,6 +11,7 @@ with open ("miracle_in_the_andes.txt","r",encoding="utf-8") as file:
 
 # How many chapters?
 
+
 pattern = re.compile('Chapter [0-9]+')
 
 findings = re.findall(pattern,book)
